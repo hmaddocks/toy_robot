@@ -29,9 +29,15 @@ defmodule ToyRobot.RobotTest do
       {:ok, %{robot: %Robot{north: 1, facing: :north}}}
     end
 
-    test "it turns right to face east", %{robot: robot} do
+    test "turns right to face east", %{robot: robot} do
       robot = robot |> Robot.turn_right()
       assert robot.facing == :east
+      assert robot.north == 1
+    end
+
+    test "turns left to face west", %{robot: robot} do
+      robot = robot |> Robot.turn_left()
+      assert robot.facing == :west
       assert robot.north == 1
     end
   end

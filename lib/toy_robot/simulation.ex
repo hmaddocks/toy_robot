@@ -1,6 +1,8 @@
 defmodule ToyRobot.Simulation do
   alias ToyRobot.Robot
   alias ToyRobot.Simulation
+  alias ToyRobot.Table
+
   defstruct [:table, :robot]
 
   @doc """
@@ -34,12 +36,16 @@ defmodule ToyRobot.Simulation do
 
   """
   def place(table, placement) do
-    {
-      :ok,
-      %Simulation{
-        table: table,
-        robot: struct(Robot, placement)
+    if Table.valid_position?(table, placement) do
+      {
+        :ok,
+        %Simulation{
+          table: table,
+          robot: struct(Robot, placement)
+        }
       }
-    }
+    else
+      {:error, :invalid_placement}
+    end
   end
 end

@@ -18,10 +18,13 @@ defmodule ToyRobot.Table do
       iex> table |> Table.valid_position?(%{north: 6,east: 0})
       false
   """
-  def valid_position?(%Table{north_boundary: north_boundary, east_boundary: east_boundary}, %{
-        north: north,
-        east: east
-      }) do
+  def valid_position?(
+        %Table{north_boundary: north_boundary, east_boundary: east_boundary},
+        %{
+          north: north,
+          east: east
+        }
+      ) do
     north <= north_boundary && north >= 0 && east <= east_boundary && east >= 0
   end
 end
